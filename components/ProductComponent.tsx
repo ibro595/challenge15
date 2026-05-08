@@ -1,61 +1,61 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-interface ProductProps {
+type ProductProps = {
   name: string;
   category: string;
-  price: number;
-  stock: number;
+  price: string;
+  stock: string;
   image: string;
   description: string;
-}
+};
 
-const ProductComponent: React.FC<ProductProps> = ({
+export default function ProductComponent({
   name,
   category,
   price,
   stock,
   image,
   description,
-}) => {
+}: ProductProps) {
   return (
     <View style={styles.card}>
       <Image source={{ uri: image }} style={styles.image} />
 
       <Text style={styles.name}>{name}</Text>
-
-      <Text>Kategorija: {category}</Text>
-
+      <Text>{category}</Text>
       <Text>{description}</Text>
+      <Text>Stock: {stock}</Text>
 
-      <Text>Stanje: {stock}</Text>
-
-      <Text>Cijena: {price} KM</Text>
+      <Text style={styles.price}>{price}</Text>
     </View>
   );
-};
-
-export default ProductComponent;
+}
 
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "#fff",
-    margin: 10,
     padding: 15,
+    marginBottom: 20,
     borderRadius: 10,
+    alignItems: "center",
     elevation: 5,
   },
 
   image: {
-    width: "100%",
-    height: 200,
-    borderRadius: 10,
+    width: 150,
+    height: 150,
     marginBottom: 10,
   },
 
   name: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
-    marginBottom: 5,
+  },
+
+  price: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginTop: 10,
   },
 });
